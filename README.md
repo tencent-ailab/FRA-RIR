@@ -1,1 +1,3 @@
-# FSA-RIR
+# Fast Random Approximation of Room Impulse Response (FRA-RIR)
+
+This is the repository for a Pytorch-based implementation of FRA-RIR method for data augmentation purpurse in simulating reverberant signals. FRA-RIR is a Image-source method (ISM) based RIR simulation method that replaces the explicit calculation of the delay and reflections of the virtual sound sources by random approximations.
