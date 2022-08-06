@@ -3,10 +3,10 @@ import torch
 from torchaudio.transforms import Resample
 from torchaudio.functional import highpass_biquad
 
-def FSA_RIR(nsource=1, sr=16000, direct_range=[-6, 50], max_T60=0.8,
+def FRA_RIR(nsource=1, sr=16000, direct_range=[-6, 50], max_T60=0.8,
             alpha=0.25, a=-2.0, b=2.0, tau=0.25):
     """
-    The fast stochastic approximation of room impulse response (FSA-RIR) method.
+    The fast random approximation of room impulse response (FRA-RIR) method.
     args:
         nsource: number of sources (RIR filters) to simulate. Default: 1.
         sr: target sample rate. Default: 16000.
@@ -109,5 +109,5 @@ def FSA_RIR(nsource=1, sr=16000, direct_range=[-6, 50], max_T60=0.8,
 
 
 if __name__ == '__main__':
-    rir, direct_rir = FSA_RIR(nsource=2)
+    rir, direct_rir = FRA_RIR(nsource=2)
     print(rir.shape, direct_rir.shape)
