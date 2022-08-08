@@ -4,7 +4,7 @@ from torchaudio.transforms import Resample
 from torchaudio.functional import highpass_biquad
 
 def FRA_RIR(nsource=1, sr=16000, direct_range=[-6, 50], max_T60=0.8,
-            alpha=0.25, a=-2.0, b=2.0, tau=0.25):
+            alpha=0.25, a=-2.0, b=2.0, tau=0.2):
     """
     The fast random approximation of room impulse response (FRA-RIR) method.
     args:
