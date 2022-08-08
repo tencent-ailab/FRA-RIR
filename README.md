@@ -2,6 +2,6 @@
 
 This is the repository for a Pytorch-based implementation of FRA-RIR method for data augmentation purpurse in simulating reverberant signals. FRA-RIR is a Image-source method (ISM) based RIR simulation method that replaces the explicit calculation of the delay and reflections of the virtual sound sources by random approximations. With a CPU-only simulation pipeline, FRA-RIR can be significantly faster than other RIR simulation tools, enabling fully on-the-fly data simulation during training, but also improves the model performance when evaluated on realistic RIR data.
 
-For details of the design, please refer to our paper on [Arxiv](https://arxiv.org/abs/2012.07291).
+Please refer to our paper on [Arxiv](https://arxiv.org/abs/2012.07291) for details.
 
 ![](https://github.com/yluo42/FRA-RIR/blob/main/FRA-RIR-result.png)
