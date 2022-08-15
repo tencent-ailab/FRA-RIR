@@ -5,3 +5,6 @@ This is the repository for a Pytorch-based implementation of FRA-RIR method for 
 Please refer to our paper on [Arxiv](https://arxiv.org/abs/2208.04101) for details.
 
 ![](https://github.com/yluo42/FRA-RIR/blob/main/FRA-RIR-result.png)
+
+## Disclaimer
+This is not an officially supported Tencent product.
