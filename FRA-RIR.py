@@ -55,7 +55,7 @@ def FRA_RIR(nsource=1, sr=16000, direct_range=[-6, 50], max_T60=0.8,
     reflect_coef = (1 - (1 - torch.exp(-0.16*R/T60)).pow(2)).sqrt()
     
     # randomly sample the propagation distance for all the virtual sound sources
-    dist_range = [torch.linspace(1., velocity*T60/direct_dist[i]-1, image) for i in range(nsource)]
+    dist_range = [torch.linspace(1., velocity*T60/direct_dist[i], image) for i in range(nsource)]
     # a simple quadratic function
     dist_prob = torch.linspace(alpha, 1., image).pow(2)
     dist_prob = dist_prob / dist_prob.sum()
@@ -82,8 +82,18 @@ def FRA_RIR(nsource=1, sr=16000, direct_range=[-6, 50], max_T60=0.8,
     rir = torch.zeros(nsource, rir_length)
     delta_idx = torch.minimum(torch.ceil(dist * sample_sr / velocity), torch.ones(1)*rir_length-1).long()
     delta_decay = reflect_coef.pow(reflect_ratio) / dist
+    delta_idx, sorted_idx = torch.sort(delta_idx)
+    delta_decay = torch.stack([delta_decay[i][sorted_idx[i]] for i in range(nsource)], 0)
+    delta_idx = delta_idx.data.cpu().numpy()
+    # iteratively detect unique indices and add to the filter
     for i in range(nsource):
-        rir[i][delta_idx[i]] += delta_decay[i]
+        remainder_idx = delta_idx[i]
+        valid_mask = np.ones(len(remainder_idx))
+        while np.sum(valid_mask) > 0:
+            valid_remainder_idx, unique_remainder_idx = np.unique(remainder_idx, return_index=True)
+            rir[i][valid_remainder_idx] += delta_decay[i][unique_remainder_idx] * valid_mask[unique_remainder_idx]
+            valid_mask[unique_remainder_idx] = 0
+            remainder_idx[unique_remainder_idx] = 0
     
     # a binary mask for direct-path RIR
     direct_mask = torch.zeros(nsource, rir_length).float()
