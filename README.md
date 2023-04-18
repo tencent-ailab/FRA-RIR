@@ -8,7 +8,7 @@ Please refer to our paper on [Arxiv](https://arxiv.org/abs/2208.04101) for detai
 
 # The multi-channel version (FRAM-RIR)
 
-Paper: [Arxiv](https://arxiv.org/abs/2304.08052)
+Paper: Fast Random Approximation of Multi-channel Room Impulse Response [[Arxiv](https://arxiv.org/abs/2304.08052)]
 
 Code: [github](https://github.com/tencent-ailab/FRA-RIR/tree/fram_rir)
 
